@@ -1,0 +1,21 @@
+xclip
+git
+rg
+fdfind
+lazygit
+clangd
+rust-analyzer
+curl
+xdg-open
+unzip
+wget
+gzip
+tar
+node
+fzf
+# langs
+cargo 
+go 
+
+
+
