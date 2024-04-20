@@ -25,13 +25,27 @@ local Base = {
 			end,
 			{ desc = "go to next buffer" },
 		},
+		{
+			{ "n", "v" },
+			"<C-j>",
+			"<C-w>h",
+			{ desc = "move to left window" },
+		},
+		{
+			{ "n", "v" },
+			"<C-k>",
+			"<C-w>l",
+			{ desc = "move to right window" },
+		},
 		-- <PageUp>
 		-- page scroll
 		-- { 'n',          'F', math.floor(vim.fn.winheight(0) / 2) .. '<C-u>',    { desc = 'scroll half page forward' } },
 		-- { 'n',          'f', math.floor(vim.fn.winheight(0) / 2) .. '<C-d>',    { desc = 'scroll half page backward' } },
 	},
 	edit = {
-		-- { 'i', '<C-BS>',      '<C-W>',  { desc = 'delete word forward' } },
+		{ "n", "cb", "<leader>bd", { desc = "delete current buffer" } },
+		{ "i", "<C-BS>", "<C-w>", { desc = "delete word forward" } },
+		{ { "n", "i" }, "<C-s>", "<CMD>w<CR>", { desc = "save file" } },
 		-- { 'v', 'y',           '"*ygvy', { desc = 'copy' } },
 		-- { 'n', 'yw',          'yiw',    { desc = 'copy the word where cursor locates' } },
 		-- { 'n', '<C-S-v>',     '<C-v>',  { desc = 'start visual mode blockwise' } },
@@ -62,7 +76,7 @@ local Plugin = {
 	bufdelete = {
 		{
 			"n",
-			"q",
+			"<C-q>",
 			function()
 				utils.delete_buf_or_quit()
 			end,
@@ -80,19 +94,37 @@ local Plugin = {
 		},
 		{
 			"n",
+			"sk",
+			function()
+				require("fzf-lua").keymaps()
+			end,
+			{ desc = "search keymaps" },
+		},
+
+		{
+			"n",
+			"csw",
+			function()
+				require("fzf-lua").grep_curbuf()
+			end,
+			{ desc = "search word in current buffer" },
+		},
+		{
+			"n",
+			"cscw",
+			function()
+				require("fzf-lua").grep_cword()
+			end,
+			{ desc = "search word in current buffer" },
+		},
+
+		{
+			"n",
 			"sf",
 			function()
 				require("fzf-lua").files()
 			end,
 			{ desc = "search file" },
-		},
-		{
-			"n",
-			"z",
-			function()
-				require("fzf-lua").buffers()
-			end,
-			{ desc = "search buffer" },
 		},
 		{
 			"n",
@@ -102,6 +134,31 @@ local Plugin = {
 			end,
 			{ desc = "search diagnostics" },
 		},
+		{
+			"n",
+			"csd",
+			function()
+				require("fzf-lua").diagnostics_document()
+			end,
+			{ desc = "search diagnostics in document" },
+		},
+
+		{
+			"n",
+			"sc",
+			function()
+				require("fzf-lua").commands()
+			end,
+			{ desc = "search command" },
+		},
+		{
+			"n",
+			"sb",
+			function()
+				require("fzf-lua").buffers()
+			end,
+			{ desc = "search buffers" },
+		},
 	},
 	neotree = {
 		--- some keymaps are in neotree.lua
@@ -109,22 +166,6 @@ local Plugin = {
 		{ "n", "<A-m>", "<CMD>cd %:h<CR>", { desc = "change root directory" } },
 	},
 	lspsaga = {
-		{
-			"n",
-			"ss",
-			function()
-				vim.api.nvim_command("Lspsaga term_toggle")
-			end,
-			{ desc = "toggle terminal" },
-		},
-		{
-			"t",
-			"<ESC>",
-			function()
-				vim.api.nvim_win_close(0, true)
-			end,
-			{ desc = "close terminal" },
-		},
 		{
 			"n",
 			"ga",
@@ -247,20 +288,7 @@ local Plugin = {
 			{ desc = "toggle debug ui" },
 		},
 	},
-	comment = {
-		{
-			"n",
-			"<C-_>",
-			"<Plug>(comment_toggle_linewise_current)",
-			{ desc = "comment" },
-		},
-		{
-			"n",
-			"<C-/>",
-			"<Plug>(comment_toggle_linewise_current)",
-			{ desc = "comment" },
-		},
-	},
+	comment = {},
 	flash = {
 		-- press '/' to search and jump
 		{

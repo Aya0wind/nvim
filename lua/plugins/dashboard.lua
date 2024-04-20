@@ -43,7 +43,7 @@ return {
 					keymap = "",
 					key = "s",
 					icon = "󰚰 ",
-					action = "source Session.vim",
+					action = "lua require('persistence').load()",
 				},
 				{
 					desc = "Update Plugins",

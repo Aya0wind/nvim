@@ -56,7 +56,7 @@ vim.o.relativenumber = false
 vim.o.ignorecase = true
 -- save space for window
 vim.o.signcolumn = "number"
-
+vim.o.autoread = true
 -- wrap line when too long to display
 vim.o.wrap = true
 

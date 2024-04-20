@@ -30,6 +30,9 @@ return {
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
+		keys = {
+			{ "s", false },
+		},
 		config = function()
 			require("flash").setup({
 				labels = "abcdefghijklmnopqrstuvwxyz0123456789",

@@ -36,18 +36,19 @@ return {
 				command = "/usr/bin/lldb-vscode", -- adjust as needed
 				name = "lldb",
 			}
+
 			dap.adapters.codelldb = {
-				type = 'server',
+				type = "server",
 				port = "${port}",
 				executable = {
-				  -- CHANGE THIS to your path!
-				  command = 'codelldb',
-				  args = {"--port", "${port}"},
-			  
-				  -- On windows you may have to uncomment this:
-				  -- detached = false,
-				}
-			  }
+					-- CHANGE THIS to your path!
+					command = "codelldb",
+					args = { "--port", "${port}" },
+
+					-- On windows you may have to uncomment this:
+					-- detached = false,
+				},
+			}
 			-- dlv debug -l 127.0.0.1:65510 --headless . -- param1 param2 param3 ...
 			dap.adapters.delve = {
 				type = "server",
