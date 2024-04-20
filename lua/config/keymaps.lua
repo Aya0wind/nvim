@@ -24,14 +24,7 @@ end, { desc = "Toggle Line Numbers" })
 map("n", "<leader>ud", function()
 	LazyVim.toggle.diagnostics()
 end, { desc = "Toggle Diagnostics" })
-local lazyterm = function()
-	LazyVim.terminal(nil, { cwd = LazyVim.root() })
-end
-map("n", "<leader>ft", lazyterm, { desc = "Terminal (Root Dir)" })
-map("n", "<leader>fT", function()
-	LazyVim.terminal()
-end, { desc = "Terminal (cwd)" })
--- lazygit
+-- lazygio
 map("n", "<leader>gg", function()
 	LazyVim.lazygit({ cwd = LazyVim.root.git() })
 end, { desc = "Lazygit (Root Dir)" })
@@ -44,11 +37,27 @@ map("n", "<leader>w-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>w|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
+
+map("n", "<A-UP>", "<C-W>+", { desc = "windows height up" })
+map("n", "<A-DOWN>", "<C-W>-", { desc = "windows height down" })
+map("n", "<A-LEFT>", "<C-W><", { desc = "windows width left" })
+map("n", "<A-RIGHT>", "<C-W>>", { desc = "windows width right" })
+
 local Base = {
 	movement = {
-		-- -- move cursor in wrapline paragraph
-		-- { { 'n', 'v' }, 'j', "v:count == 0 ? 'gj' : 'j'",                       { expr = true, silent = true, desc = 'go to next wrapline' } },
-		-- { { 'n', 'v' }, 'k', "v:count == 0 ? 'gk' : 'k'",                       { expr = true, silent = true, desc = 'go to previous wrapline' } },
+		-- move cursor in wrapline paragraph
+		{
+			{ "n", "v" },
+			"j",
+			"v:count == 0 ? 'gj' : 'j'",
+			{ expr = true, silent = true, desc = "go to next wrapline" },
+		},
+		{
+			{ "n", "v" },
+			"k",
+			"v:count == 0 ? 'gk' : 'k'",
+			{ expr = true, silent = true, desc = "go to previous wrapline" },
+		},
 		{ { "n", "v" }, "<A-l>", "$", { desc = "go to the end of line" } },
 		{ { "n", "v" }, "<A-h>", "^", { desc = "go the begin of line" } },
 
@@ -85,15 +94,12 @@ local Base = {
 		-- page scroll
 		-- { 'n',          'F', math.floor(vim.fn.winheight(0) / 2) .. '<C-u>',    { desc = 'scroll half page forward' } },
 		-- { 'n',          'f', math.floor(vim.fn.winheight(0) / 2) .. '<C-d>',    { desc = 'scroll half page backward' } },
-	},
-	edit = {
-		{ "n", "cb", "<leader>bd", { desc = "delete current buffer" } },
 		{ "i", "<C-BS>", "<C-w>", { desc = "delete word forward" } },
 		{ { "n", "i" }, "<C-s>", "<CMD>w<CR>", { desc = "save file" } },
 		-- { 'v', 'y',           '"*ygvy', { desc = 'copy' } },
 		-- { 'n', 'yw',          'yiw',    { desc = 'copy the word where cursor locates' } },
 		-- { 'n', '<C-S-v>',     '<C-v>',  { desc = 'start visual mode blockwise' } },
-		-- { 'v', '>',           '>gv',    { desc = 'indent while keeping virtual mode after ' } },
+		-- { 'v', '>',           '>gv',    { desc = 'while keeping virtual mode after ' } },
 		-- { 'v', '<',           '<gv',    { desc = 'indent while keeping virtual mode after ' } },
 		-- { 'n', '<Backspace>', 'ciw',    { desc = 'delete word and edit in normal mode' } },
 		-- { 'v', '<Backspace>', 'c',      { desc = 'delete and edit in visual mode' } },
@@ -103,9 +109,8 @@ local Base = {
 		-- { { 'n', 'v' }, ']',         '*',            { nowait = true, desc = 'search forward for the word where the cursor is located' } },
 		-- { { 'n', 'v' }, '[',         '#',            { nowait = true, desc = 'search backward for the word where the cursor is located' } },
 		-- { 'n',          '<leader>q', 'q1',           { desc = 'record macro to register 1' } },
-		-- { 'n',          '<C-q>',     utils.quit_win, { desc = 'quit window' } },
+		{ "n", "<C-q>", utils.quit_win, { desc = "quit window" } },
 		-- { 'n',          'Q',         utils.wq_all,   { desc = 'quit all' } },
-		{ "n", "fd", utils.format, { desc = "format document" } },
 	},
 	fold = {
 		-- { 'n', '<CR>',          'za', { desc = 'toggle fold' } },
@@ -118,14 +123,14 @@ local Base = {
 
 local Plugin = {
 	bufdelete = {
-		{
-			"n",
-			"<C-q>",
-			function()
-				utils.delete_buf_or_quit()
-			end,
-			{ desc = "delete buffer or quit" },
-		},
+		-- {
+		-- 	"n",
+		-- 	"<C-q>",
+		-- 	function()
+		-- 		utils.delete_buf_or_quit()
+		-- 	end,
+		-- 	{ desc = "delete buffer or quit" },
+		-- },
 	},
 	fzf = {
 		{
@@ -211,6 +216,14 @@ local Plugin = {
 			end,
 			{ desc = "search definition" },
 		},
+		{
+			"n",
+			"st",
+			function()
+				require("fzf-lua").colorschemes()
+			end,
+			{ desc = "search colorschemes" },
+		},
 	},
 	neotree = {
 		--- some keymaps are in neotree.lua
@@ -284,7 +297,7 @@ local Plugin = {
 		},
 		{
 			"n",
-			"gb",
+			"gt",
 			function()
 				vim.api.nvim_command("Lspsaga show_workspace_diagnostics")
 			end,
@@ -351,6 +364,14 @@ local Plugin = {
 		-- 	end,
 		-- 	{ desc = "search and select in treesitter" },
 		-- },
+	},
+	term = {
+		{
+			"n",
+			"<C-\\>",
+			":ToggleTerm<CR>",
+			{ desc = "toggle terminal" },
+		},
 	},
 	-- markdown = {
 	--     { 'n', '<leader>p', utils.preview_note,  { desc = 'preview markdown' } },

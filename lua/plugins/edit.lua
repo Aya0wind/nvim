@@ -4,9 +4,9 @@ return {
 		opts = {
 			{
 				---Add a space b/w comment and the line
-				padding = true,
+				padding = false,
 				---Whether the cursor should stay at its position
-				sticky = true,
+				sticky = false,
 				---Lines to be ignored while (un)comment
 				ignore = nil,
 				---LHS of toggle mappings in NORMAL mode
@@ -52,10 +52,10 @@ return {
 		config = function()
 			require("nvim-surround").setup({
 				keymaps = {
-					visual = "s",
-					normal = "ys",
-					delete = "ds",
-					change = "cs",
+					visual = "fv",
+					normal = "fs",
+					delete = "fd",
+					change = "fc",
 				},
 				surrounds = {
 					["("] = {

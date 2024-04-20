@@ -1,5 +1,3 @@
-local vim = vim
-
 -- disable statusline, set splitline for windows
 -- vim.o.laststatus = 0
 -- local str = string.rep('-', vim.api.nvim_win_get_width(0))

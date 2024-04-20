@@ -1,8 +1,26 @@
 return {
 	{
-		"folke/tokyonight.nvim",
+		"EdenEast/nightfox.nvim",
+		config = function()
+			require("nightfox").setup({
+				options = {
+					transparent = true,
+					styles = {
+						comments = "italic",
+						keywords = "bold",
+						types = "italic,bold",
+					},
+				},
+			})
+			vim.cmd("colorscheme carbonfox")
+		end,
 		lazy = false,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = true,
 		priority = 1000,
+		enabled = true,
 		config = function()
 			require("tokyonight").setup({
 				style = "night",
@@ -34,7 +52,7 @@ return {
 					}
 				end,
 			})
-			vim.cmd("colorscheme tokyonight")
+			-- vim.cmd("colorscheme tokyonight")
 		end,
 	},
 	{
@@ -68,6 +86,13 @@ return {
 		end,
 	},
 	{
+		"akinsho/toggleterm.nvim",
+		opts = {
+			direction = "float",
+		},
+		lazy = false,
+	},
+	{
 		"folke/noice.nvim",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
@@ -78,6 +103,7 @@ return {
 				-- cmdline = {
 				-- 	view = "cmdline",
 				-- },
+				lsp = { progress = { enabled = false }, diagnostics = { enabled = true } },
 				messages = {
 					view = "mini",
 				},
@@ -85,7 +111,7 @@ return {
 					enabled = true,
 				},
 				presets = {
-					bottom_search = true, -- use a classic bottom cmdline for search
+					bottom_search = false, -- use a classic bottom cmdline for search
 					lsp_doc_border = false, -- add a border to hover docs and signature help
 				},
 				routes = {
@@ -95,7 +121,7 @@ return {
 							kind = "",
 							find = "written",
 						},
-						opts = { skip = false },
+						opts = { skip = true },
 					},
 					{
 						filter = {
