@@ -1,5 +1,49 @@
 local vim = vim
 local utils = require("config.utils")
+local map = vim.keymap.set
+
+-- default maps
+map("n", "<leader>uf", function()
+	LazyVim.format.toggle()
+end, { desc = "Toggle Auto Format (Global)" })
+map("n", "<leader>uF", function()
+	LazyVim.format.toggle(true)
+end, { desc = "Toggle Auto Format (Buffer)" })
+map("n", "<leader>us", function()
+	LazyVim.toggle("spell")
+end, { desc = "Toggle Spelling" })
+map("n", "<leader>uw", function()
+	LazyVim.toggle("wrap")
+end, { desc = "Toggle Word Wrap" })
+map("n", "<leader>uL", function()
+	LazyVim.toggle("relativenumber")
+end, { desc = "Toggle Relative Line Numbers" })
+map("n", "<leader>ul", function()
+	LazyVim.toggle.number()
+end, { desc = "Toggle Line Numbers" })
+map("n", "<leader>ud", function()
+	LazyVim.toggle.diagnostics()
+end, { desc = "Toggle Diagnostics" })
+local lazyterm = function()
+	LazyVim.terminal(nil, { cwd = LazyVim.root() })
+end
+map("n", "<leader>ft", lazyterm, { desc = "Terminal (Root Dir)" })
+map("n", "<leader>fT", function()
+	LazyVim.terminal()
+end, { desc = "Terminal (cwd)" })
+-- lazygit
+map("n", "<leader>gg", function()
+	LazyVim.lazygit({ cwd = LazyVim.root.git() })
+end, { desc = "Lazygit (Root Dir)" })
+map("n", "<leader>gG", function()
+	LazyVim.lazygit()
+end, { desc = "Lazygit (cwd)" })
+map("n", "<leader>ww", "<C-W>p", { desc = "Other Window", remap = true })
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+map("n", "<leader>w-", "<C-W>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>w|", "<C-W>v", { desc = "Split Window Right", remap = true })
+map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 local Base = {
 	movement = {
 		-- -- move cursor in wrapline paragraph
@@ -159,6 +203,14 @@ local Plugin = {
 			end,
 			{ desc = "search buffers" },
 		},
+		{
+			"n",
+			"std",
+			function()
+				require("fzf-lua").lsp_definitions()
+			end,
+			{ desc = "search definition" },
+		},
 	},
 	neotree = {
 		--- some keymaps are in neotree.lua
@@ -291,14 +343,14 @@ local Plugin = {
 	comment = {},
 	flash = {
 		-- press '/' to search and jump
-		{
-			{ "n", "x", "o" },
-			"?",
-			function()
-				require("flash").treesitter()
-			end,
-			{ desc = "search and select in treesitter" },
-		},
+		-- {
+		-- 	{ "n", "x", "o" },
+		-- 	"?",
+		-- 	function()
+		-- 		require("flash").treesitter()
+		-- 	end,
+		-- 	{ desc = "search and select in treesitter" },
+		-- },
 	},
 	-- markdown = {
 	--     { 'n', '<leader>p', utils.preview_note,  { desc = 'preview markdown' } },
@@ -311,10 +363,6 @@ local Plugin = {
 	--     { 'n', '<C-l>', require('nvim-tmux-navigation').NvimTmuxNavigateRight,  { desc = 'navigate in neovim windows and tmux windows' } },
 
 	-- },
-	-- --- keymaps of nvim-cmp are in cmp.lua
-	-- cmp = {},
-	-- --- keymaps of nvim-surround are in edit.lua
-	-- surround = {},
 }
 
 local keyMapper = function(keySet)
