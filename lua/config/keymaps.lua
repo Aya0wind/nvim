@@ -90,6 +90,18 @@ local Base = {
 			"<C-w>l",
 			{ desc = "move to right window" },
 		},
+		{
+			{ "n", "v" },
+			"<C-h>",
+			"<C-w>j",
+			{ desc = "move to below window" },
+		},
+		{
+			{ "n", "v" },
+			"<C-l>",
+			"<C-w>k",
+			{ desc = "move to above window" },
+		},
 		-- <PageUp>
 		-- page scroll
 		-- { 'n',          'F', math.floor(vim.fn.winheight(0) / 2) .. '<C-u>',    { desc = 'scroll half page forward' } },
