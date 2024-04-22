@@ -30,6 +30,7 @@ return {
 				},
 				filters = {
 					custom = { "^.git$" },
+					dotfiles = false,
 				},
 				on_attach = my_on_attach,
 			})

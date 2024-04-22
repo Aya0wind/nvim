@@ -27,6 +27,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		require("osc52").copy_register("+")
 	end,
 })
+vim.api.nvim_create_autocmd("UIEnter", {
+	callback = function()
+		require("notify").setup({
+			background_colour = "#000000",
+		})
+	end,
+})
 -- vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 --     pattern = { "*" },
 --     command = "silent! wall",

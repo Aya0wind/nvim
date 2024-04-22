@@ -47,7 +47,6 @@ vim.o.sel = "inclusive"
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
-vim.o.showmode = true
 -- show numbers
 vim.o.number = true
 vim.o.relativenumber = false
