@@ -30,7 +30,6 @@ return {
 				post_hook = nil,
 			},
 		},
-		lazy = false,
 	},
 	{
 		"windwp/nvim-autopairs",

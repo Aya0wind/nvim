@@ -103,7 +103,7 @@ return {
 				-- cmdline = {
 				-- 	view = "cmdline",
 				-- },
-				lsp = { progress = { enabled = false }, diagnostics = { enabled = true } },
+				lsp = { progress = { enabled = false }, diagnostics = { enabled = false } },
 				messages = {
 					view = "mini",
 				},
@@ -111,7 +111,7 @@ return {
 					enabled = true,
 				},
 				presets = {
-					bottom_search = false, -- use a classic bottom cmdline for search
+					bottom_search = true, -- use a classic bottom cmdline for search
 					lsp_doc_border = false, -- add a border to hover docs and signature help
 				},
 				routes = {
