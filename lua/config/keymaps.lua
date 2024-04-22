@@ -122,6 +122,20 @@ local Base = {
 		-- { { 'n', 'v' }, '[',         '#',            { nowait = true, desc = 'search backward for the word where the cursor is located' } },
 		-- { 'n',          '<leader>q', 'q1',           { desc = 'record macro to register 1' } },
 		{ "n", "<C-q>", utils.quit_win, { desc = "quit window" } },
+
+
+
+
+
+
+        {
+			"n",
+			"fd",
+			function()
+				LazyVim.format()
+			end,
+			{ desc = "format code" },
+		},
 		-- { 'n',          'Q',         utils.wq_all,   { desc = 'quit all' } },
 	},
 	fold = {
@@ -237,11 +251,11 @@ local Plugin = {
 			{ desc = "search colorschemes" },
 		},
 	},
-	neotree = {
-		--- some keymaps are in neotree.lua
-		{ "n", "<leader>t", ":Neotree toggle<CR>", { desc = "toggle neotree" } },
-		{ "n", "<A-m>", "<CMD>cd %:h<CR>", { desc = "change root directory" } },
-	},
+	-- neotree = {
+	-- 	--- some keymaps are in neotree.lua
+	-- 	{ "n", "<leader>t", ":Neotree toggle<CR>", { desc = "toggle neotree" } },
+	-- 	{ "n", "<A-m>", "<CMD>cd %:h<CR>", { desc = "change root directory" } },
+	-- },
 	lspsaga = {
 		{
 			"n",
