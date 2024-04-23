@@ -49,7 +49,7 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 -- show numbers
 vim.o.number = true
-vim.o.relativenumber = false
+vim.o.relativenumber = true
 vim.o.ignorecase = true
 -- save space for window
 vim.o.signcolumn = "number"

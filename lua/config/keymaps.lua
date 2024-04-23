@@ -123,12 +123,7 @@ local Base = {
 		-- { 'n',          '<leader>q', 'q1',           { desc = 'record macro to register 1' } },
 		{ "n", "<C-q>", utils.quit_win, { desc = "quit window" } },
 
-
-
-
-
-
-        {
+		{
 			"n",
 			"fd",
 			function()
@@ -427,3 +422,49 @@ end
 
 keyMapper(Base)
 keyMapper(Plugin)
+
+local found_cmake = pcall(require, "cmake-tools")
+if found_cmake then
+	vim.keymap.set(
+		{ "v", "n", "i", "t" },
+		"<F5>",
+		"<cmd>wa<CR><cmd>if luaeval('require\"cmake-tools\".is_cmake_project()')|call execute('CMakeRun')|else|call execute('TermExec cmd=!!')|endif<CR>",
+		{ silent = true }
+	)
+	vim.keymap.set(
+		{ "v", "n", "i", "t" },
+		"<F6>",
+		"<cmd>wa<CR><cmd>if luaeval('require\"cmake-tools\".is_cmake_project()')|call execute('CMakeStop')|else|call execute('TermExec cmd=\\<C-c>')|endif<CR>",
+		{ silent = true }
+	)
+else
+	vim.keymap.set(
+		{ "v", "n", "i", "t" },
+		"<F5>",
+		"<cmd>wa<CR><cmd>call execute('TermExec cmd=!!<')CR>",
+		{ silent = true }
+	)
+	vim.keymap.set(
+		{ "v", "n", "i", "t" },
+		"<F6>",
+		"<cmd>wa<CR><cmd>call execute('TermExec cmd=\\<C-c>')<CR>",
+		{ silent = true }
+	)
+end
+if found_cmake then
+	vim.keymap.set(
+		{ "v", "n", "i", "t" },
+		"<F7>",
+		"<cmd>if luaeval('require\"cmake-tools\".is_cmake_project() and require\"dap\".session()==nil')|call execute('CMakeDebug')|else|call execute('DapContinue')|endif<CR>",
+		{ silent = true }
+	)
+	vim.keymap.set(
+		{ "v", "n", "i", "t" },
+		"<F8>",
+		"<cmd>if luaeval('require\"cmake-tools\".is_cmake_project() and require\"dap\".session()==nil')|call execute('CMakeStop')|else|call execute('DapTerminate')|endif<CR>",
+		{ silent = true }
+	)
+else
+	vim.keymap.set({ "v", "n", "i", "t" }, "<F9>", "<cmd>DapContinue<CR>", { silent = true })
+	vim.keymap.set({ "v", "n", "i", "t" }, "<F21>", "<cmd>DapTerminate<CR>", { silent = true })
+end

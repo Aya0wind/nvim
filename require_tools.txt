@@ -6,7 +6,6 @@ lazygit
 clangd
 rust-analyzer
 curl
-xdg-open
 unzip
 wget
 gzip
