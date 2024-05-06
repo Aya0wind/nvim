@@ -3,7 +3,6 @@ return {
 	lazy = false,
 	config = function()
 		require("cmake-tools").setup({
-
 			cmake_command = "cmake", -- this is used to specify cmake command path
 			cmake_regenerate_on_save = false, -- auto generate when save CMakeLists.txt
 			cmake_generate_options = { "-DCMAKE_EXPORT_COMPILE_COMMANDS=1" }, -- this will be passed when invoke `CMakeGenerate`
@@ -123,7 +122,7 @@ return {
 			return '"' .. s .. '"'
 		end
 
-		function _terminal.prepare_cmd_for_run(executable, args, launch_path, wrap_call, env)
+		function _terminal.prepare_cmd_for_run(executable, env, args, cwd, wrap_call)
 			local full_cmd = ""
 			-- executable = vim.fn.fnamemodify(executable, ":t")
 
@@ -141,7 +140,7 @@ return {
 			else
 				full_cmd = full_cmd .. table.concat(env, " ")
 			end
-
+			print("full_cmd: ", full_cmd)
 			-- prepend wrap_call args
 			if wrap_call then
 				for _, arg in ipairs(wrap_call) do
@@ -155,19 +154,19 @@ return {
 				full_cmd = " " .. full_cmd -- adding a space in front of the command prevents bash from recording the command in the history (if configured)
 			end
 
-			full_cmd = full_cmd .. shlex_quote(executable)
+			full_cmd = full_cmd .. " " .. shlex_quote(executable)
 
 			-- Add args to the cmd
 			if args then
 				for _, arg in ipairs(args) do
-					full_cmd = full_cmd .. shlex_quote(arg)
+					full_cmd = full_cmd .. " " .. shlex_quote(arg)
 				end
 			end
 
 			if osys.iswin32 then -- wrap in sub process to prevent env vars from being persited
-				full_cmd = "cmd /C " .. shlex_quote(full_cmd)
+				full_cmd = "cmd /C " .. " " .. shlex_quote(full_cmd)
 			end
-
+			print("full_cmd: ", full_cmd)
 			-- if osys.islinux or osys.iswsl or osys.ismac then
 			--     full_cmd = full_cmd .. ' && exit' -- exit if command succeeds (avoids terminal hanging)
 			-- end
