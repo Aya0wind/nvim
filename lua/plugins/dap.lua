@@ -38,12 +38,12 @@ return {
 			dap.listeners.after.event_initialized["dapui_config"] = function()
 				dapui.open({})
 			end
-			dap.listeners.before.event_terminated["dapui_config"] = function()
-				dapui.close({})
-			end
-			dap.listeners.before.event_exited["dapui_config"] = function()
-				dapui.close({})
-			end
+			-- dap.listeners.before.event_terminated["dapui_config"] = function()
+			-- 	dapui.close({})
+			-- end
+			-- dap.listeners.before.event_exited["dapui_config"] = function()
+			-- 	dapui.close({})
+			-- end
 
 			dap.adapters.lldb = {
 				type = "executable",
@@ -109,29 +109,6 @@ return {
 					stopOnEntry = false,
 				},
 			}
-
-			dap.configurations.go = {
-				{
-					type = "delve",
-					name = "Debug",
-					request = "launch",
-					program = "${file}",
-				},
-				{
-					type = "delve",
-					name = "Debug test",
-					request = "launch",
-					mode = "test",
-					program = "${file}",
-				},
-				{
-					type = "delve",
-					name = "Attach remote",
-					mode = "remote",
-					request = "attach",
-				},
-			}
-
 			-- pip install debugpy under VIRTUAL_ENV
 			dap.configurations.python = {
 				{

@@ -345,6 +345,7 @@ local Plugin = {
 			"n",
 			"<F1>",
 			function()
+				require("dap.ext.vscode").load_launchjs(nil, { server = { "go" } })
 				require("dap").continue()
 			end,
 			{ desc = "continue" },
