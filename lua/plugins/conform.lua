@@ -7,5 +7,8 @@ return {
 			fish = { "fish_indent" },
 			sh = { "shfmt" },
 		},
+		format = {
+			lsp_fallback = true,
+		},
 	},
 }

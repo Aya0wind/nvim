@@ -107,7 +107,7 @@ local Base = {
 		-- { 'n',          'F', math.floor(vim.fn.winheight(0) / 2) .. '<C-u>',    { desc = 'scroll half page forward' } },
 		-- { 'n',          'f', math.floor(vim.fn.winheight(0) / 2) .. '<C-d>',    { desc = 'scroll half page backward' } },
 		{ "i", "<C-BS>", "<C-w>", { desc = "delete word forward" } },
-		{ { "n", "i" }, "<C-s>", "<CMD>w<CR>", { desc = "save file" } },
+		{ { "n", "i" }, "<C-s>", "<CMD>w<CR><CMD>stopinsert<CR>", { desc = "save file" } },
 		-- { 'v', 'y',           '"*ygvy', { desc = 'copy' } },
 		-- { 'n', 'yw',          'yiw',    { desc = 'copy the word where cursor locates' } },
 		-- { 'n', '<C-S-v>',     '<C-v>',  { desc = 'start visual mode blockwise' } },
@@ -251,6 +251,16 @@ local Plugin = {
 	-- 	{ "n", "<leader>t", ":Neotree toggle<CR>", { desc = "toggle neotree" } },
 	-- 	{ "n", "<A-m>", "<CMD>cd %:h<CR>", { desc = "change root directory" } },
 	-- },
+	edit = {
+		{
+			"n",
+			"<leader>fd",
+			function()
+				require("conform").format({ lsp_fallback = true })
+			end,
+			{ desc = "format document" },
+		},
+	},
 	lspsaga = {
 		{
 			"n",
