@@ -57,7 +57,7 @@ return {
 
 				if not directory then
 					-- open the tree, find the file but don't focus it
-					require("nvim-tree.api").tree.toggle({ focus = false, find_file = true })
+                    require("neo-tree").open()
 				else
 					-- create a new, empty buffer
 					-- vim.cmd.enew()

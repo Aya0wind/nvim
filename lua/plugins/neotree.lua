@@ -37,6 +37,35 @@ return {
 					},
 				},
 			})
+			local function open_neo_tree(data)
+				-- -- buffer is a real file on the disk
+				-- local real_file = vim.fn.filereadable(data.file) == 1
+				--
+				-- -- buffer is a [No Name]
+				-- local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+
+				-- buffer is a directory
+				local directory = vim.fn.isdirectory(data.file) == 1
+
+				-- if not real_file and not no_name and not directory then
+				--   return
+				-- end
+
+				if not directory then
+					-- open the tree, find the file but don't focus it
+				else
+					-- create a new, empty buffer
+					-- vim.cmd.enew()
+					-- wipe the directory buffer
+					vim.cmd.bw(data.buf)
+					-- change to the directory
+					vim.cmd.cd(data.file)
+                    vim.cmd("Neotree toggle")
+					-- open the tree
+				end
+			end
+
+			vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_neo_tree })
 			require("neo-tree").setup({
 				sources = { "filesystem", "document_symbols", "git_status" },
 				enable_diagnostics = true,
