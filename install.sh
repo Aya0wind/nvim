@@ -87,7 +87,6 @@ detect_arch() {
 		echo "${arch}"
 	fi
 }
-
 install_pacman() {
 	pacman -S --noconfirm ripgrep || true
 	pacman -S --noconfirm fzf || true

@@ -8,7 +8,7 @@ if not found_cmake then
 end
 local icons = require("config.icons")
 local config = {
-	options = { theme = "vscode", component_separators = "", section_separators = "" },
+	options = { component_separators = "", section_separators = "" },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = {},
@@ -319,9 +319,9 @@ ins_right({
 	padding = { left = 1 },
 })
 ins_right({
-    "location",
-    color = { fg = colors.blue },
- })
+	"location",
+	color = { fg = colors.blue },
+})
 return {
 	{
 		"nvim-lualine/lualine.nvim",

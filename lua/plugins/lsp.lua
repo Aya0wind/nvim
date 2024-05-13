@@ -2,8 +2,11 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
 			"williamboman/mason.nvim",
+			{
+				"williamboman/mason-lspconfig.nvim",
+				opt = { automatic_installation = true },
+			},
 		},
 		opts = {
 			inlay_hints = { enabled = true },
@@ -12,7 +15,6 @@ return {
 		config = function()
 			local lspconfig = require("lspconfig")
 			require("java").setup()
-            lspconfig.jdtls.setup({})
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local other_servers = {
 				"gopls",
@@ -24,6 +26,8 @@ return {
 				"jsonls",
 				"marksman",
 				"clangd",
+				"jdtls",
+				"bashls",
 			}
 			capabilities.offsetEncoding = { "utf-16" }
 			for _, server in ipairs(other_servers) do
@@ -78,13 +82,8 @@ return {
 			-- 		},
 			-- 	},
 			-- })
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-				hint = { enable = true },
-			})
 		end,
 		-- dont use any event, as new created file will not have lsp attached
-		lazy = false,
 	},
 	-- {
 	-- 	"nvimtools/none-ls.nvim",
@@ -166,8 +165,5 @@ return {
 			end
 		end,
 		dependencies = { "neovim/nvim-lspconfig" },
-		config = function()
-			require("inlay-hints").setup()
-		end,
 	},
 }
