@@ -87,7 +87,7 @@ return {
 					last_modified = { enabled = true },
 				},
 				window = {
-					width = 25,
+					width = 30,
 					auto_expand_width = false,
 					mappings = {
 						["t"] = "toggle_node",

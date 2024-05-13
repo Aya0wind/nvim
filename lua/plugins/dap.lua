@@ -12,12 +12,12 @@ return {
 					{
 						elements = {
 							-- Elements can be strings or table with id and size keys.
-							{ id = "scopes", size = 0.25 },
+							{ id = "scopes", size = 0.35},
 							"breakpoints",
 							"stacks",
 							"watches",
 						},
-						size = 0.3,
+						size = 0.4,
 						position = "right",
 					},
 					{
@@ -45,12 +45,7 @@ return {
 			-- 	dapui.close({})
 			-- end
 
-			dap.adapters.lldb = {
-				type = "executable",
-				command = "/usr/bin/lldb-vscode", -- adjust as needed
-				name = "lldb",
-			}
-
+		
 			dap.adapters.codelldb = {
 				type = "server",
 				port = "${port}",

@@ -1,3 +1,13 @@
+local function check_version()
+	if vim.fn.has("nvim-0.10.0") == 1 then
+		return true
+	else
+		return false
+	end
+end
+
+local have_inlay_hints = check_version()
+
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -157,13 +167,10 @@ return {
 	{
 		"MysticalDevil/inlay-hints.nvim",
 		event = "LspAttach",
-		enabled = function()
-			if vim.fn.has("nvim-0.10") == 1 then
-				return true
-			else
-				return false
-			end
-		end,
+		enabled = have_inlay_hints,
 		dependencies = { "neovim/nvim-lspconfig" },
+		config = function()
+			require("inlay-hints").setup()
+		end,
 	},
 }
