@@ -96,7 +96,7 @@ local conditions = {
 		return gitdir and #gitdir > 0 and #gitdir < #filepath
 	end,
 }
-local c = {
+local cmake = {
 	-- {
 	--     function()
 	--         local kit = cmake.get_kit()
@@ -227,10 +227,34 @@ local c = {
 		end,
 	},
 }
-ins_left(c[1])
-ins_left(c[2])
-ins_left(c[3])
-ins_left(c[4])
+ins_left({
+	"branch",
+	icon = "",
+	color = { fg = colors.violet, gui = "bold" },
+	on_click = function(n, mouse)
+		if n == 1 then
+			if mouse == "l" then
+				LazyVim.lazygit({ cwd = LazyVim.root.git() })
+			end
+		end
+	end,
+})
+
+ins_left({
+	"diff",
+	symbols = { added = " ", modified = "󰝤 ", removed = " " },
+	diff_color = {
+		added = { fg = colors.green },
+		modified = { fg = colors.orange },
+		removed = { fg = colors.red },
+	},
+	cond = conditions.hide_in_width,
+})
+
+ins_left(cmake[1])
+ins_left(cmake[2])
+ins_left(cmake[3])
+ins_left(cmake[4])
 
 local xmake_component = {
 	function()
@@ -256,18 +280,6 @@ local diagnostics = {
 		return vim.fn.winwidth(0) > 80
 	end,
 }
-local cdate = {
-	"cdate",
-	cond = function()
-		return vim.fn.winwidth(0) > 80
-	end,
-}
-local ctime = {
-	"ctime",
-	cond = function()
-		return vim.fn.winwidth(0) > 80
-	end,
-}
 diagnostics.symbols = {
 	error = icons.diagnostics.Error,
 	warn = icons.diagnostics.Warning,
@@ -275,15 +287,12 @@ diagnostics.symbols = {
 	hint = icons.diagnostics.Question,
 }
 ins_left(diagnostics)
--- Inserts a component in lualine_c at left section
 ins_right({
 	-- filesize component
 	"filesize",
 	cond = conditions.buffer_not_empty,
 	colors = { fg = colors.violet, gui = "bold" },
 })
-ins_right(cdate)
-ins_right(ctime)
 ins_right({
 	"o:encoding", -- option component same as &encoding in viml
 	fmt = string.upper, -- I'm not sure why it's upper case either ;)
@@ -294,34 +303,14 @@ ins_right({
 ins_right({
 	"fileformat",
 	fmt = string.upper,
-	icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
+	icons_enabled = true, -- i think icons are cool but eviline doesn't have them. sigh
 	color = { fg = colors.green, gui = "bold" },
 })
 
 ins_right({
-	"branch",
-	icon = "",
-	color = { fg = colors.violet, gui = "bold" },
-	on_click = function(n, mouse)
-		if n == 1 then
-			if mouse == "l" then
-				LazyVim.lazygit({ cwd = LazyVim.root.git() })
-			end
-		end
-	end,
+	"filetype",
+	icons_enabled = true, -- i think icons are cool but eviline doesn't have them. sigh
 })
-
-ins_right({
-	"diff",
-	symbols = { added = " ", modified = "󰝤 ", removed = " " },
-	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.orange },
-		removed = { fg = colors.red },
-	},
-	cond = conditions.hide_in_width,
-})
-
 ins_right({
 	function()
 		return "▊"
@@ -329,7 +318,10 @@ ins_right({
 	color = { fg = colors.blue },
 	padding = { left = 1 },
 })
-
+ins_right({
+    "location",
+    color = { fg = colors.blue },
+ })
 return {
 	{
 		"nvim-lualine/lualine.nvim",

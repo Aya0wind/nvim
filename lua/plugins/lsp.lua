@@ -11,9 +11,20 @@ return {
 		},
 		config = function()
 			local lspconfig = require("lspconfig")
+			require("java").setup()
+            lspconfig.jdtls.setup({})
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local other_servers =
-				{ "gopls", "pyright", "lua_ls", "dockerls", "bashls", "ruff_lsp", "jsonls", "marksman", "clangd" }
+			local other_servers = {
+				"gopls",
+				"pyright",
+				"lua_ls",
+				"dockerls",
+				"bashls",
+				"ruff_lsp",
+				"jsonls",
+				"marksman",
+				"clangd",
+			}
 			capabilities.offsetEncoding = { "utf-16" }
 			for _, server in ipairs(other_servers) do
 				lspconfig[server].setup({
@@ -50,6 +61,23 @@ return {
 				end,
 				single_file_support = true,
 			})
+			-- lspconfig.jdtls.setup({
+			-- 	capabilities = capabilities,
+			-- 	hint = { enable = true },
+			-- 	settings = {
+			-- 		java = {
+			-- 			configuration = {
+			-- 				runtimes = {
+			-- 					{
+			-- 						name = "OpenJDK-17",
+			-- 						path = "/usr/bin/java",
+			-- 						default = true,
+			-- 					},
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				hint = { enable = true },
@@ -133,9 +161,9 @@ return {
 		enabled = function()
 			if vim.fn.has("nvim-0.10") == 1 then
 				return true
-            else 
-                return false
-            end
+			else
+				return false
+			end
 		end,
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()

@@ -15,6 +15,7 @@ return {
 		end,
 		lazy = false,
 	},
+	{ "kosayoda/nvim-lightbulb", lazy = false },
 	-- {
 	-- 	"folke/tokyonight.nvim",
 	-- 	lazy = true,

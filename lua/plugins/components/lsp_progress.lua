@@ -10,7 +10,7 @@ LspProgress.default = {
 		message = "#ffffff",
 		spinner = "#008080",
 		lsp_client_name = "#c678dd",
-		use = false,
+		use = true,
 	},
 	separators = {
 		component = " ",
@@ -21,7 +21,7 @@ LspProgress.default = {
 		lsp_client_name = { pre = "[", post = "]" },
 		spinner = { pre = "", post = "" },
 	},
-	display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
+	display_components = { "lsp_client_name", "spinner", { "title", "percentage"} },
 	timer = { progress_enddelay = 500, spinner = 500, lsp_client_name_enddelay = 1000 },
 	spinner_symbols_dice = { " ", " ", " ", " ", " ", " " }, -- Nerd fonts needed
 	spinner_symbols_moon = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
