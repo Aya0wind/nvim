@@ -16,23 +16,23 @@ return {
 			end
 			require("nvim-tree").setup({
 				auto_reload_on_write = true,
-				hijack_cursor = false,
+				-- hijack_cursor = false,
 				-- open_on_setup = false,
 				-- open_on_setup_file = true,
-				hijack_unnamed_buffer_when_opening = false,
+				-- hijack_unnamed_buffer_when_opening = false,
 				sort_by = "name",
 				view = {
-					width = "20%",
+					width = 30,
 					-- height = 30,
 					side = "left",
 					--color = "#3f0af0",
-					preserve_window_proportions = true, -- cmake-tools say that they need this
+					-- preserve_window_proportions = true, -- cmake-tools say that they need this
 				},
 				filters = {
 					custom = { "^.git$" },
 					dotfiles = false,
 				},
-				on_attach = my_on_attach,
+				-- on_attach = my_on_attach,
 			})
 			-- vim.cmd([[
 			-- augroup exit_if_nvim_tree_only_tab
@@ -69,7 +69,7 @@ return {
 				end
 			end
 
-			vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+			-- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 			-- vim.api.nvim_create_autocmd("BufEnter", {
 			-- 	nested = true,
