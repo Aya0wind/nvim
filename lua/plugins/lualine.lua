@@ -304,7 +304,7 @@ ins_right({
 	"fileformat",
 	fmt = string.upper,
 	icons_enabled = true, -- i think icons are cool but eviline doesn't have them. sigh
-	color = { fg = colors.green, gui = "bold" },
+	color = { fg = colors.yellow, gui = "bold" },
 })
 ins_right("copilot")
 
