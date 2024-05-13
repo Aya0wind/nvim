@@ -56,9 +56,6 @@ return {
 	-- },
 	{
 		"akinsho/bufferline.nvim",
-		dependencies = {
-			"folke/tokyonight.nvim",
-		},
 		event = "UIEnter",
 		config = function()
 			require("bufferline").setup({

@@ -108,10 +108,8 @@ local Base = {
 		-- { 'n',          'f', math.floor(vim.fn.winheight(0) / 2) .. '<C-d>',    { desc = 'scroll half page backward' } },
 		{ "i", "<C-BS>", "<C-w>", { desc = "delete word forward" } },
 		{ { "n", "i" }, "<C-s>", "<CMD>w<CR><CMD>stopinsert<CR>", { desc = "save file" } },
-		-- { 'v', 'y',           '"*ygvy', { desc = 'copy' } },
 		-- { 'n', 'yw',          'yiw',    { desc = 'copy the word where cursor locates' } },
-		-- { 'n', '<C-S-v>',     '<C-v>',  { desc = 'start visual mode blockwise' } },
-		-- { 'v', '>',           '>gv',    { desc = 'while keeping virtual mode after ' } },
+		-- { 'v', '>',           'gv',    { desc = 'while keeping virtual mode after ' } },
 		-- { 'v', '<',           '<gv',    { desc = 'indent while keeping virtual mode after ' } },
 		-- { 'n', '<Backspace>', 'ciw',    { desc = 'delete word and edit in normal mode' } },
 		-- { 'v', '<Backspace>', 'c',      { desc = 'delete and edit in visual mode' } },
@@ -160,7 +158,7 @@ local Plugin = {
 			function()
 				require("fzf-lua").live_grep()
 			end,
-			{ desc = "search word" },
+			{ desc = "search word in workspace" },
 		},
 		{
 			"n",
@@ -168,7 +166,39 @@ local Plugin = {
 			function()
 				require("fzf-lua").keymaps()
 			end,
-			{ desc = "search keymaps" },
+			{ desc = "search key in workspace" },
+		},
+		{
+			"n",
+			"sg",
+			function()
+				require("fzf-lua").git_commits()
+			end,
+			{ desc = "search commits in workspace" },
+		},
+		{
+			"n",
+			"csg",
+			function()
+				require("fzf-lua").git_bcommits()
+			end,
+			{ desc = "search commits in current buffer" },
+		},
+		{
+			"n",
+			"ss",
+			function()
+				require("fzf-lua").lsp_workspace_symbols()
+			end,
+			{ desc = "search workspace symbols" },
+		},
+		{
+			"n",
+			"css",
+			function()
+				require("fzf-lua").lsp_document_symbols()
+			end,
+			{ desc = "search document symbols" },
 		},
 
 		{
@@ -185,7 +215,7 @@ local Plugin = {
 			function()
 				require("fzf-lua").grep_cword()
 			end,
-			{ desc = "search word in current buffer" },
+			{ desc = "search cword in current buffer" },
 		},
 
 		{
@@ -195,6 +225,22 @@ local Plugin = {
 				require("fzf-lua").files()
 			end,
 			{ desc = "search file" },
+		},
+		{
+			"n",
+			"sy",
+			function()
+				require("fzf-lua").lsp_typedefs()
+			end,
+			{ desc = "search type definitions" },
+		},
+		{
+			"n",
+			"sq",
+			function()
+				require("fzf-lua").quickfix()
+			end,
+			{ desc = "search quickfix" },
 		},
 		{
 			"n",
@@ -241,7 +287,7 @@ local Plugin = {
 			"n",
 			"st",
 			function()
-				require("fzf-lua").colorschemes()
+			require("fzf-lua").colorschemes()
 			end,
 			{ desc = "search colorschemes" },
 		},

@@ -88,9 +88,6 @@ return {
 					separator = "›",
 					hide_keyword = true,
 				},
-				lightbulb = {
-					virtual_text = false,
-				},
 				code_action = {
 					keys = {
 						quit = { "q", "<ESC>" },

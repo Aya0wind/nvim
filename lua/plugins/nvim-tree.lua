@@ -22,7 +22,7 @@ return {
 				hijack_unnamed_buffer_when_opening = false,
 				sort_by = "name",
 				view = {
-					width = 30,
+					width = "20%",
 					-- height = 30,
 					side = "left",
 					--color = "#3f0af0",
