@@ -521,6 +521,18 @@ if found_cmake then
 		"<cmd>if luaeval('require\"cmake-tools\".is_cmake_project() and require\"dap\".session()==nil')|call execute('CMakeStop')|else|call execute('DapTerminate')|endif<CR>",
 		{ silent = true }
 	)
+    vim.keymap.set(
+        { "v", "n", "i", "t" },
+        "<F9>",
+        "<cmd>CMakeSelectBuildTarget<CR>",
+        { silent = true, desc = "Select CMake build target" }
+    )
+    vim.keymap.set(
+        { "v", "n", "i", "t" },
+        "<F10>",
+        "<cmd>CMakeSelectLaunchTarget<CR>",
+        { silent = true, desc = "Select CMake launch target" }
+    )
 else
 	vim.keymap.set({ "v", "n", "i", "t" }, "<F9>", "<cmd>DapContinue<CR>", { silent = true })
 	vim.keymap.set({ "v", "n", "i", "t" }, "<F21>", "<cmd>DapTerminate<CR>", { silent = true })
