@@ -104,15 +104,15 @@ local Base = {
 		},
 		-- <PageUp>
 		-- page scroll
-		-- { 'n',          'F', math.floor(vim.fn.winheight(0) / 2) .. '<C-u>',    { desc = 'scroll half page forward' } },
-		-- { 'n',          'f', math.floor(vim.fn.winheight(0) / 2) .. '<C-d>',    { desc = 'scroll half page backward' } },
+		{ 'n',          'F', math.floor(vim.fn.winheight(0) / 2) .. '<C-u>',    { desc = 'scroll half page forward' } },
+		{ 'n',          'f', math.floor(vim.fn.winheight(0) / 2) .. '<C-d>',    { desc = 'scroll half page backward' } },
 		{ "i", "<C-BS>", "<C-w>", { desc = "delete word forward" } },
 		{ { "n", "i" }, "<C-s>", "<CMD>w<CR><CMD>stopinsert<CR>", { desc = "save file" } },
 		-- { 'n', 'yw',          'yiw',    { desc = 'copy the word where cursor locates' } },
 		-- { 'v', '>',           'gv',    { desc = 'while keeping virtual mode after ' } },
 		-- { 'v', '<',           '<gv',    { desc = 'indent while keeping virtual mode after ' } },
-		-- { 'n', '<Backspace>', 'ciw',    { desc = 'delete word and edit in normal mode' } },
-		-- { 'v', '<Backspace>', 'c',      { desc = 'delete and edit in visual mode' } },
+		{ 'n', '<Backspace>', 'ciw',    { desc = 'delete word and edit in normal mode' } },
+		{ 'v', '<Backspace>', 'c',      { desc = 'delete and edit in visual mode' } },
 	},
 	cmd = {
 		-- { { 'n', 'v' }, ';',         ':',            { nowait = true, desc = 'enter commandline mode' } },
@@ -136,7 +136,7 @@ local Base = {
 		-- { 'n', '<2-LeftMouse>', 'za', { desc = 'toggle fold' } },
 	},
 	modeSwitch = {
-		-- { 'i', '<ESC>', '<C-O><CMD>stopinsert<CR>', { desc = 'exit to normal mode while keeping cursor location' } },
+		{ 'i', '<ESC>', '<C-O><CMD>stopinsert<CR>', { desc = 'exit to normal mode while keeping cursor location' } },
 	},
 }
 
@@ -292,11 +292,6 @@ local Plugin = {
 			{ desc = "search colorschemes" },
 		},
 	},
-	-- neotree = {
-	-- 	--- some keymaps are in neotree.lua
-	-- 	{ "n", "<leader>t", ":Neotree toggle<CR>", { desc = "toggle neotree" } },
-	-- 	{ "n", "<A-m>", "<CMD>cd %:h<CR>", { desc = "change root directory" } },
-	-- },
 	edit = {
 		{
 			"n",
@@ -447,10 +442,18 @@ local Plugin = {
 		{
 			"n",
 			"<C-\\>",
-			":ToggleTerm<CR>",
+			"<cmd>ToggleTerm<CR>",
 			{ desc = "toggle terminal" },
 		},
 	},
+    tree = {
+        {
+            {"n","v"},
+            "t",
+            "<cmd>Neotree toggle<CR>",
+            { desc = "toggle neotree" }
+        }
+    }
 	-- markdown = {
 	--     { 'n', '<leader>p', utils.preview_note,  { desc = 'preview markdown' } },
 	--     { 'n', 'P',         utils.paste_as_link, { desc = 'paste image as link' } },

@@ -82,12 +82,12 @@ return {
 				close_if_last_window = true,
 				default_component_configs = {
 					indent = { padding = 0 },
-					file_size = { enabled = true },
+					file_size = { enabled = false },
 					type = { enabled = true },
-					last_modified = { enabled = true },
+					last_modified = { enabled = false },
 				},
 				window = {
-					width = 30,
+					width = 35,
 					auto_expand_width = false,
 					mappings = {
 						["t"] = "toggle_node",
@@ -109,7 +109,7 @@ return {
 							["a"] = "add",
 							["."] = "toggle_hidden",
 							["y"] = "copy_to_clipboard",
-							["s"] = "split_with_window_picker",
+							-- ["s"] = "split_with_window_picker",
 							["v"] = "vsplit_with_window_picker",
 							["x"] = "cut_to_clipboard",
 							["p"] = "paste_from_clipboard",
