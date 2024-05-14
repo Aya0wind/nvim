@@ -1,20 +1,12 @@
 xclip
 git
-rg
+ripgrep
 fdfind
 lazygit
-clangd
-rust-analyzer
 curl
 unzip
 wget
-gzip
-tar
-node
 fzf
-# langs
-cargo 
-go 
 
 
 

@@ -94,16 +94,18 @@ install_pacman() {
 	pacman -S --noconfirm make
 	pacman -S --noconfirm git
 	pacman -S --noconfirm curl
+	pacman -S --noconfirm unzip
 }
 
 install_apt() {
 	export DEBIAN_FRONTEND=noninteractive
 	apt update
-	apt-get install -y ripgrep || true
-	apt-get install -y fzf || true
-	apt-get install -y cmake
-	apt-get install -y git
-	apt-get install -y curl
+	apt install -y ripgrep || true
+	apt install -y fzf || true
+	apt install -y cmake
+	apt install -y git
+	apt install -y curl
+    apt install -y unzip
 }
 
 install_yum() {
@@ -122,9 +124,7 @@ install_brew() {
 	brew install cmake
 	brew install git
 	brew install curl
-	brew install clangd || true
-	brew install node || true
-	brew install npm || true
+    brew install unzip
 }
 
 install_dnf() {
@@ -133,7 +133,7 @@ install_dnf() {
 	dnf install -y cmake
 	dnf install -y git
 	dnf install -y curl
-
+    dnf install -y unzip
 }
 
 install_zypper() {
@@ -142,7 +142,7 @@ install_zypper() {
 	zypper in --no-confirm cmake
 	zypper in --no-confirm git
 	zypper in --no-confirm curl
-
+    zypper in --no-confirm unzip
 }
 
 do_install() {
