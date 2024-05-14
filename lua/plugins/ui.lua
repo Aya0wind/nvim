@@ -16,6 +16,14 @@ return {
 		lazy = false,
 	},
 	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	config = function()
+	-- 		require("notify").setup({
+	-- 			background_colour = "#000000",
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
 	-- 	"folke/tokyonight.nvim",
 	-- 	lazy = true,
 	-- 	priority = 1000,
@@ -81,11 +89,19 @@ return {
 					},
 					left_trunc_marker = "",
 					modified_icon = "●",
-					offsets = { { filetype = "NvimTree", text = "EXPLORER", text_align = "center" } },
 					right_mouse_command = "bdelete! %d",
 					right_trunc_marker = "",
 					show_close_icon = true,
 					show_tab_indicators = true,
+					offsets = {
+						{
+							filetype = "NeoTree",
+							text = "Files",
+							text_align = "center",
+							highlight = "Directory",
+							separator = true,
+						},
+					},
 				},
 				highlights = {
 					fill = {

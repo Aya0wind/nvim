@@ -21,12 +21,12 @@ vim.g.width_close_tree = 120
 --     end
 -- })
 --
-vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank()
-		require("osc52").copy_register("+")
-	end,
-})
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+-- 	callback = function()
+-- 		vim.highlight.on_yank()
+-- 		require("osc52").copy_register("+")
+-- 	end,
+-- })
 vim.api.nvim_create_autocmd("UIEnter", {
 	callback = function()
 		require("notify").setup({
@@ -49,17 +49,17 @@ vim.api.nvim_create_autocmd("UIEnter", {
 --     end,
 -- })
 --
--- vim.api.nvim_create_autocmd("FileType", {
---     callback = function(event)
---         vim.o.foldcolumn = '0'
---         vim.o.foldlevel = 99
---         vim.o.foldlevelstart = 99
---         vim.o.foldenable = true
---         if require("nvim-treesitter.parsers").get_parser() then
---             vim.o.foldmethod = "expr"
---             vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
---         else
---             vim.o.foldmethod = "syntax"
---         end
---     end,
--- })
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function(_)
+        vim.o.foldcolumn = '0'
+        vim.o.foldlevel = 99
+        vim.o.foldlevelstart = 99
+        vim.o.foldenable = true
+        if require("nvim-treesitter.parsers").get_parser() then
+            vim.o.foldmethod = "expr"
+            vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        else
+            vim.o.foldmethod = "syntax"
+        end
+    end,
+})

@@ -22,7 +22,7 @@ LspProgress.default = {
 		spinner = { pre = "", post = "" },
 	},
 	display_components = { "lsp_client_name", "spinner", { "title", "percentage"} },
-	timer = { progress_enddelay = 500, spinner = 500, lsp_client_name_enddelay = 1000 },
+	timer = { progress_enddelay = 250, spinner = 250, lsp_client_name_enddelay = 500 },
 	spinner_symbols_dice = { " ", " ", " ", " ", " ", " " }, -- Nerd fonts needed
 	spinner_symbols_moon = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
 	spinner_symbols_square = { "▙ ", "▛ ", "▜ ", "▟ " },
