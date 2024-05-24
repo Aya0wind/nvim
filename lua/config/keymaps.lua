@@ -58,9 +58,10 @@ local Base = {
 			"v:count == 0 ? 'gk' : 'k'",
 			{ expr = true, silent = true, desc = "go to previous wrapline" },
 		},
-		{ { "n", "v" }, "<A-l>", "$", { desc = "go to the end of line" } },
-		{ { "n", "v" }, "<A-h>", "^", { desc = "go the begin of line" } },
-
+		{ "i", "<A-l>", "<RIGHT>", { desc = "cursor right" } },
+		{ "i", "<A-h>", "<LEFT>", { desc = "cursor left" } },
+		{ "i", "<A-j>", "<DOWN>", { desc = "cursor down" } },
+		{ "i", "<A-k>", "<UP>", { desc = "cursor up" } },
 		-- dont modify <Tab>, which will affect <C-i>
 		{
 			"n",
@@ -104,15 +105,20 @@ local Base = {
 		},
 		-- <PageUp>
 		-- page scroll
-		{ 'n',          'F', math.floor(vim.fn.winheight(0) / 2) .. '<C-u>',    { desc = 'scroll half page forward' } },
-		{ 'n',          'f', math.floor(vim.fn.winheight(0) / 2) .. '<C-d>',    { desc = 'scroll half page backward' } },
+		{ "n", "F", math.floor(vim.fn.winheight(0) / 2) .. "<C-u>", { desc = "scroll half page forward" } },
+		{
+			"n",
+			"f",
+			math.floor(vim.fn.winheight(0) / 2) .. "<C-d>",
+			{ desc = "scroll half page backward" },
+		},
 		{ "i", "<C-BS>", "<C-w>", { desc = "delete word forward" } },
 		{ { "n", "i" }, "<C-s>", "<CMD>w<CR><CMD>stopinsert<CR>", { desc = "save file" } },
 		-- { 'n', 'yw',          'yiw',    { desc = 'copy the word where cursor locates' } },
 		-- { 'v', '>',           'gv',    { desc = 'while keeping virtual mode after ' } },
 		-- { 'v', '<',           '<gv',    { desc = 'indent while keeping virtual mode after ' } },
-		{ 'n', '<Backspace>', 'ciw',    { desc = 'delete word and edit in normal mode' } },
-		{ 'v', '<Backspace>', 'c',      { desc = 'delete and edit in visual mode' } },
+		{ "n", "<Backspace>", "ciw", { desc = "delete word and edit in normal mode" } },
+		{ "v", "<Backspace>", "c", { desc = "delete and edit in visual mode" } },
 	},
 	cmd = {
 		-- { { 'n', 'v' }, ';',         ':',            { nowait = true, desc = 'enter commandline mode' } },
@@ -136,7 +142,7 @@ local Base = {
 		-- { 'n', '<2-LeftMouse>', 'za', { desc = 'toggle fold' } },
 	},
 	modeSwitch = {
-		{ 'i', '<ESC>', '<C-O><CMD>stopinsert<CR>', { desc = 'exit to normal mode while keeping cursor location' } },
+		{ "i", "<ESC>", "<C-O><CMD>stopinsert<CR>", { desc = "exit to normal mode while keeping cursor location" } },
 	},
 }
 
@@ -287,7 +293,7 @@ local Plugin = {
 			"n",
 			"st",
 			function()
-			require("fzf-lua").colorschemes()
+				require("fzf-lua").colorschemes()
 			end,
 			{ desc = "search colorschemes" },
 		},
@@ -446,14 +452,14 @@ local Plugin = {
 			{ desc = "toggle terminal" },
 		},
 	},
-    tree = {
-        {
-            {"n","v"},
-            "t",
-            "<cmd>Neotree toggle<CR>",
-            { desc = "toggle neotree" }
-        }
-    }
+	tree = {
+		{
+			{ "n", "v" },
+			"t",
+			"<cmd>Neotree toggle<CR>",
+			{ desc = "toggle neotree" },
+		},
+	},
 	-- markdown = {
 	--     { 'n', '<leader>p', utils.preview_note,  { desc = 'preview markdown' } },
 	--     { 'n', 'P',         utils.paste_as_link, { desc = 'paste image as link' } },
@@ -524,18 +530,18 @@ if found_cmake then
 		"<cmd>if luaeval('require\"cmake-tools\".is_cmake_project() and require\"dap\".session()==nil')|call execute('CMakeStop')|else|call execute('DapTerminate')|endif<CR>",
 		{ silent = true }
 	)
-    vim.keymap.set(
-        { "v", "n", "i", "t" },
-        "<F9>",
-        "<cmd>CMakeSelectBuildTarget<CR>",
-        { silent = true, desc = "Select CMake build target" }
-    )
-    vim.keymap.set(
-        { "v", "n", "i", "t" },
-        "<F10>",
-        "<cmd>CMakeSelectLaunchTarget<CR>",
-        { silent = true, desc = "Select CMake launch target" }
-    )
+	vim.keymap.set(
+		{ "v", "n", "i", "t" },
+		"<F9>",
+		"<cmd>CMakeSelectBuildTarget<CR>",
+		{ silent = true, desc = "Select CMake build target" }
+	)
+	vim.keymap.set(
+		{ "v", "n", "i", "t" },
+		"<F10>",
+		"<cmd>CMakeSelectLaunchTarget<CR>",
+		{ silent = true, desc = "Select CMake launch target" }
+	)
 else
 	vim.keymap.set({ "v", "n", "i", "t" }, "<F9>", "<cmd>DapContinue<CR>", { silent = true })
 	vim.keymap.set({ "v", "n", "i", "t" }, "<F21>", "<cmd>DapTerminate<CR>", { silent = true })

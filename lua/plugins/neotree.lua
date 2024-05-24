@@ -65,7 +65,7 @@ return {
 				end
 			end
 
-			vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_neo_tree })
+			vim.api.nvim_create_autocmd({ "UIEnter" }, { callback = open_neo_tree })
 			require("neo-tree").setup({
 				sources = { "filesystem", "document_symbols", "git_status" },
 				enable_diagnostics = true,

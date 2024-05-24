@@ -1,10 +1,7 @@
 return {
 	{
 		"nvimdev/dashboard-nvim",
-		event = "UIEnter",
-		cond = function()
-			return #vim.v.argv == 2
-		end,
+		event = "VimEnter",
 		config = function()
 			local version = vim.version()
 			local header = {
@@ -20,7 +17,10 @@ return {
 				-- " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
 				-- "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
 				-- "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
-				"N E O V I M - v " .. version.major .. "." .. version.minor,
+				"N E O V I M - v "
+					.. version.major
+					.. "."
+					.. version.minor,
 				"",
 			}
 			local center = {
@@ -80,8 +80,9 @@ return {
 
 			require("dashboard").setup({
 				config = {
-					header = header,
 					center = center,
+					packages = { enable = true },
+					project = { enable = true, action =":Neotree dir=" },
 				},
 			})
 		end,

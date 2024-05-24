@@ -172,7 +172,7 @@ return {
 				},
 			})
 
-			-- auto insert `(` after select function or method item
+			-- auto insert fallback after select function or method item
 			cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
 		end,
 	},
