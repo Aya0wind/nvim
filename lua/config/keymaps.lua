@@ -161,142 +161,108 @@ local Plugin = {
 		{
 			"n",
 			"sw",
-			function()
-				require("fzf-lua").live_grep()
-			end,
+            "<cmd>Telescope live_grep theme=ivy<cr>",
 			{ desc = "search word in workspace" },
 		},
 		{
 			"n",
 			"sk",
-			function()
-				require("fzf-lua").keymaps()
-			end,
+            "<cmd>Telescope keymaps theme=ivy<cr>",
 			{ desc = "search key in workspace" },
 		},
 		{
 			"n",
 			"sg",
-			function()
-				require("fzf-lua").git_commits()
-			end,
+            "<cmd>Telescope git_commits theme=ivy<cr>",
 			{ desc = "search commits in workspace" },
 		},
 		{
 			"n",
 			"csg",
-			function()
-				require("fzf-lua").git_bcommits()
-			end,
+            "<cmd>Telescope git_bcommits theme=ivy<cr>",
 			{ desc = "search commits in current buffer" },
 		},
 		{
 			"n",
 			"ss",
-			function()
-				require("fzf-lua").lsp_workspace_symbols()
-			end,
+            "<cmd>Telescope lsp_workspace_symbols theme=ivy<cr>",
 			{ desc = "search workspace symbols" },
 		},
 		{
 			"n",
 			"css",
-			function()
-				require("fzf-lua").lsp_document_symbols()
-			end,
+            "<cmd>Telescope lsp_document_symbols theme=ivy<cr>",
 			{ desc = "search document symbols" },
 		},
 
 		{
 			"n",
 			"csw",
-			function()
-				require("fzf-lua").grep_curbuf()
-			end,
+            "<cmd>Telescope current_buffer_fuzzy_find theme=ivy<cr>",
 			{ desc = "search word in current buffer" },
 		},
-		{
-			"n",
-			"cscw",
-			function()
-				require("fzf-lua").grep_cword()
-			end,
-			{ desc = "search cword in current buffer" },
-		},
-
+		
 		{
 			"n",
 			"sf",
-			function()
-				require("fzf-lua").files()
-			end,
+            "<cmd>Telescope find_files theme=ivy<cr>",
 			{ desc = "search file" },
 		},
 		{
 			"n",
-			"sy",
-			function()
-				require("fzf-lua").lsp_typedefs()
-			end,
-			{ desc = "search type definitions" },
-		},
-		{
-			"n",
-			"sq",
-			function()
-				require("fzf-lua").quickfix()
-			end,
+            "sq",
+            "<cmd>Telescope quickfix theme=ivy<cr>",
 			{ desc = "search quickfix" },
 		},
 		{
 			"n",
 			"sd",
-			function()
-				require("fzf-lua").diagnostics_workspace()
-			end,
+            "<cmd>Telescope diagnostics theme=ivy<cr>",
 			{ desc = "search diagnostics" },
 		},
 		{
 			"n",
 			"csd",
-			function()
-				require("fzf-lua").diagnostics_document()
-			end,
+            "<cmd>Telescope diagnostics bufnr=0 theme=ivy<cr>",
 			{ desc = "search diagnostics in document" },
 		},
 
 		{
 			"n",
 			"sc",
-			function()
-				require("fzf-lua").commands()
-			end,
+            "<cmd>Telescope commands theme=ivy<cr>",
 			{ desc = "search command" },
 		},
 		{
 			"n",
 			"sb",
-			function()
-				require("fzf-lua").buffers()
-			end,
+            "<cmd>Telescope buffers theme=ivy<cr>",
 			{ desc = "search buffers" },
 		},
 		{
 			"n",
 			"std",
-			function()
-				require("fzf-lua").lsp_definitions()
-			end,
+            "<cmd>Telescope lsp_definitions theme=ivy<cr>",
 			{ desc = "search definition" },
 		},
 		{
 			"n",
 			"st",
-			function()
-				require("fzf-lua").colorschemes()
-			end,
+            "<cmd>telescope colorscheme theme=ivy<cr>",
 			{ desc = "search colorschemes" },
 		},
+        {
+            "n",
+            "sj",
+            "<cmd>Telescope jumplist theme=ivy<cr>",
+            { desc = "search jumplist" },
+        },
+        {
+            "n",
+            "sr",
+            "<cmd>Telescope lsp_references theme=ivy<cr>",
+            { desc = "search search references" },
+        },
 	},
 	edit = {
 		{
@@ -335,7 +301,7 @@ local Plugin = {
 		},
 		{
 			"n",
-			"gn",
+			"gr",
 			function()
 				vim.api.nvim_command("Lspsaga rename")
 			end,
@@ -351,7 +317,7 @@ local Plugin = {
 		},
 		{
 			"n",
-			"gr",
+			"gfr",
 			function()
 				vim.api.nvim_command("Lspsaga finder")
 			end,

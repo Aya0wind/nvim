@@ -90,7 +90,7 @@ return {
 					width = 35,
 					auto_expand_width = false,
 					mappings = {
-						["t"] = "toggle_node",
+						["t"] = nil,
 						["<tab>"] = "next_source",
 						["<esc>"] = "cancel",
 						["r"] = "rename",

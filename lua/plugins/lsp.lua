@@ -148,7 +148,6 @@ return {
 					handlers = { setup },
 				})
 			end
-			require("java").setup()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local other_servers = {
 				"gopls",

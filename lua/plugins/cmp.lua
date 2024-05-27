@@ -22,8 +22,7 @@ return {
 				{ "│", "FloatBorder" },
 				{ "┘", "FloatBorder" },
 				{ "─", "FloatBorder" },
-				{ "└", "FloatBorder" }
-                ,
+				{ "└", "FloatBorder" },
 				{ "│", "FloatBorder" },
 			}
 
@@ -49,6 +48,10 @@ return {
 					completeopt = "menu,menuone,noinsert",
 				},
 				enabled = function()
+					buftype = vim.api.nvim_buf_get_option(0, "buftype")
+					if buftype == "prompt" then
+						return false
+					end
 					-- disable completion in comments
 					local context = require("cmp.config.context")
 					-- keep command mode completion enabled when cursor is in a comment
@@ -83,7 +86,7 @@ return {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
-						elseif pcall(require,"copilot")~=false and require("copilot.suggestion").is_visible() then
+						elseif pcall(require, "copilot") ~= false and require("copilot.suggestion").is_visible() then
 							require("copilot.suggestion").accept()
 						elseif luasnip.jumpable(1) then
 							luasnip.jump(1)
@@ -101,7 +104,7 @@ return {
 					["<S-Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.close()
-						elseif pcall(require,"copilot")~=false and require("copilot.suggestion").is_visible() then
+						elseif pcall(require, "copilot") ~= false and require("copilot.suggestion").is_visible() then
 							require("copilot.suggestion").dismiss()
 						elseif luasnip.jumpable(-1) then
 							luasnip.jump(-1)
