@@ -6,7 +6,6 @@ local function check_version()
 	end
 end
 
-local have_inlay_hints = check_version()
 local icons = require("config.icons")
 return {
 	{
@@ -150,17 +149,10 @@ return {
 			end
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local other_servers = {
-				"gopls",
-				"pyright",
 				"lua_ls",
-				"dockerls",
 				"bashls",
-				"ruff_lsp",
 				"jsonls",
-				"marksman",
 				"clangd",
-				"jdtls",
-				"bashls",
 			}
 			capabilities.offsetEncoding = { "utf-16" }
 			for _, server in ipairs(other_servers) do
@@ -290,7 +282,7 @@ return {
 	{
 		"MysticalDevil/inlay-hints.nvim",
 		event = "LspAttach",
-		enabled = have_inlay_hints,
+		enabled = check_version(),
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
 			require("inlay-hints").setup()

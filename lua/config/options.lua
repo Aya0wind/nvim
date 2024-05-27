@@ -66,3 +66,5 @@ vim.g.python3_host_prog = vim.fn.exepath("python3")
 -- vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 vim.g.autoformat = false
 vim.opt.pumblend = 0
+
+vim.opt.scrolloff = 999
