@@ -68,3 +68,6 @@ vim.g.autoformat = false
 vim.opt.pumblend = 0
 
 vim.opt.scrolloff = 999
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_ruby_provider = 0

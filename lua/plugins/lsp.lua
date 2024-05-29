@@ -15,7 +15,7 @@ return {
 			"williamboman/mason.nvim",
 			{
 				"williamboman/mason-lspconfig.nvim",
-				opt = { automatic_installation = true },
+				opts = { automatic_installation = true },
 			},
 		},
 		opts = {
@@ -136,7 +136,9 @@ return {
 					end
 				end
 			end
-
+            if pcall(require, "nvim-java") then
+                require("java").setup()
+            end
 			if have_mason then
 				mlsp.setup({
 					ensure_installed = vim.tbl_deep_extend(

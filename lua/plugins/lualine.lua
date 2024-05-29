@@ -8,7 +8,7 @@ if not found_cmake then
 end
 local icons = require("config.icons")
 local config = {
-	options = {icons_enabled = true, component_separators = "", section_separators = "" },
+	options = { icons_enabled = true, component_separators = "", section_separators = "" },
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = {},
@@ -306,8 +306,9 @@ ins_right({
 	icons_enabled = true, -- i think icons are cool but eviline doesn't have them. sigh
 	color = { fg = colors.yellow, gui = "bold" },
 })
-ins_right("copilot")
-
+if pcall(require, "copilot") then
+	ins_right("copilot")
+end
 ins_right({
 	"filetype",
 	icons_enabled = true, -- i think icons are cool but eviline doesn't have them. sigh
@@ -326,7 +327,7 @@ ins_right({
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "folke/noice.nvim","AndreM222/copilot-lualine" },
+		dependencies = { "folke/noice.nvim", "AndreM222/copilot-lualine" },
 		event = "UIEnter",
 		config = function()
 			require("lualine").setup(config)

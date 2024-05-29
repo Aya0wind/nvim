@@ -89,7 +89,6 @@ detect_arch() {
 }
 install_pacman() {
 	pacman -S --noconfirm ripgrep || true
-	pacman -S --noconfirm fzf || true
 	pacman -S --noconfirm cmake
 	pacman -S --noconfirm make
 	pacman -S --noconfirm git
@@ -101,7 +100,6 @@ install_apt() {
 	export DEBIAN_FRONTEND=noninteractive
 	apt update
 	apt install -y ripgrep || true
-	apt install -y fzf || true
 	apt install -y cmake
 	apt install -y git
 	apt install -y curl
@@ -111,7 +109,6 @@ install_apt() {
 install_yum() {
 	yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
 	yum install -y ripgrep || true
-	yum install -y fzf || true
 	yum install -y cmake
 	yum install -y make
 	yum install -y git
@@ -120,7 +117,6 @@ install_yum() {
 
 install_brew() {
 	brew install ripgrep || true
-	brew install fzf || true
 	brew install cmake
 	brew install git
 	brew install curl
@@ -129,7 +125,6 @@ install_brew() {
 
 install_dnf() {
 	dnf install -y ripgrep || true
-	dnf install -y fzf || true
 	dnf install -y cmake
 	dnf install -y git
 	dnf install -y curl
@@ -138,7 +133,6 @@ install_dnf() {
 
 install_zypper() {
 	zypper in --no-confirm ripgrep || true
-	zypper in --no-confirm fzf || true
 	zypper in --no-confirm cmake
 	zypper in --no-confirm git
 	zypper in --no-confirm curl
