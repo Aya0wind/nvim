@@ -136,7 +136,7 @@ return {
 					end
 				end
 			end
-            if pcall(require, "nvim-java") then
+            if pcall(require, "java") then
                 require("java").setup()
             end
 			if have_mason then

@@ -58,7 +58,6 @@ local Base = {
 			"v:count == 0 ? 'gk' : 'k'",
 			{ expr = true, silent = true, desc = "go to previous wrapline" },
 		},
-		{ "n", "o", "<Enter>", { desc = "open" } },
 		{ "i", "<A-l>", "<RIGHT>", { desc = "cursor right" } },
 		{ "i", "<A-h>", "<LEFT>", { desc = "cursor left" } },
 		{ "i", "<A-j>", "<DOWN>", { desc = "cursor down" } },
