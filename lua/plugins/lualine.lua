@@ -287,6 +287,7 @@ diagnostics.symbols = {
 	hint = icons.diagnostics.Question,
 }
 ins_left(diagnostics)
+ins_right(require('auto-session.lib').current_session_name)
 ins_right({
 	-- filesize component
 	"filesize",
@@ -327,7 +328,7 @@ ins_right({
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "folke/noice.nvim", "AndreM222/copilot-lualine" },
+		dependencies = { "folke/noice.nvim", "AndreM222/copilot-lualine","rmagatti/auto-session" },
 		event = "UIEnter",
 		config = function()
 			require("lualine").setup(config)

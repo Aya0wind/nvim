@@ -190,6 +190,12 @@ local Plugin = {
 		},
 		{
 			"n",
+			"sS",
+            "<cmd>Telescope session-lens search_session theme=ivy<cr>",
+			{ desc = "search sessions" },
+		},
+		{
+			"n",
 			"css",
             "<cmd>Telescope lsp_document_symbols theme=ivy<cr>",
 			{ desc = "search document symbols" },

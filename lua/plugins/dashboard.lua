@@ -2,6 +2,7 @@ return {
 	{
 		"nvimdev/dashboard-nvim",
 		event = "VimEnter",
+        enabled = false,
 		config = function()
 			local version = vim.version()
 			local header = {
@@ -79,10 +80,12 @@ return {
 			})
 
 			require("dashboard").setup({
+                theme="doom",
 				config = {
+                    header = header,
 					center = center,
-					packages = { enable = true },
-					project = { enable = true, action =":Neotree dir=" },
+					packages = { enable = false },
+					project = { enable = false },
 				},
 			})
 		end,

@@ -153,7 +153,6 @@ return {
 			local other_servers = {
 				"lua_ls",
 				"bashls",
-				"jsonls",
 				"clangd",
 			}
 			capabilities.offsetEncoding = { "utf-16" }
