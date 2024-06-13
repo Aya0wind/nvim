@@ -231,13 +231,13 @@ ins_left({
 	"branch",
 	icon = "",
 	color = { fg = colors.violet, gui = "bold" },
-	on_click = function(n, mouse)
-		if n == 1 then
-			if mouse == "l" then
-				LazyVim.lazygit({ cwd = LazyVim.root.git() })
-			end
-		end
-	end,
+	-- on_click = function(n, mouse)
+	-- 	if n == 1 then
+	-- 		if mouse == "l" then
+	-- 			LazyVim.lazygit({ cwd = LazyVim.root.git() })
+	-- 		end
+	-- 	end
+	-- end,
 })
 
 ins_left({

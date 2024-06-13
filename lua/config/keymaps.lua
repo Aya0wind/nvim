@@ -184,6 +184,12 @@ local Plugin = {
 		},
 		{
 			"n",
+			"css",
+            "<cmd>Telescope aerial theme=ivy<cr>",
+			{ desc = "search current symbols" },
+		},
+		{
+			"n",
 			"sS",
             "<cmd>Telescope session-lens search_session theme=ivy<cr>",
 			{ desc = "search sessions" },

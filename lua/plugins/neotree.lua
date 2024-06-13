@@ -60,23 +60,27 @@ return {
 					vim.cmd.bw(data.buf)
 					-- change to the directory
 					vim.cmd.cd(data.file)
-                    vim.cmd("Neotree toggle")
+					vim.cmd("Neotree toggle")
 					-- open the tree
 				end
 			end
 
 			vim.api.nvim_create_autocmd({ "UIEnter" }, { callback = open_neo_tree })
 			require("neo-tree").setup({
-				sources = { "filesystem", "document_symbols", "git_status" },
+				-- sources = { "filesystem", "document_symbols"},
 				enable_diagnostics = true,
-				source_selector = {
-					winbar = true,
-					sources = {
-						{ source = "filesystem" },
-						{ source = "document_symbols" },
-						{ source = "git_status" },
-					},
+				enable_git_sttus = true,
+				enable_normal_mode_for_inputs = false,
+				container = {
+					enable_character_fade = true,
 				},
+				-- source_selector = {
+				-- 	winbar = true,
+				-- 	sources = {
+				-- 		{ source = "filesystem" },
+				-- 		{ source = "document_symbols" },
+				-- 	},
+				-- },
 				hide_root_node = false,
 				auto_clean_after_session_restore = true,
 				close_if_last_window = true,
@@ -99,9 +103,9 @@ return {
 				filesystem = {
 					follow_current_file = {
 						enabled = true,
-						leave_dirs_open = true,
+						-- leave_dirs_open = true,
 					},
-					hijack_netrw_behavior = "open_default",
+					hijack_netrw_behavior = "disabled",
 					window = {
 						mappings = {
 							["<2-LeftMouse>"] = "open_with_window_picker",
@@ -159,6 +163,6 @@ return {
 				},
 			})
 		end,
-		cmd = { "Neotree" },
+		-- cmd = { "Neotree" },
 	},
 }
