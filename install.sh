@@ -90,7 +90,6 @@ detect_arch() {
 install_pacman() {
 	pacman -S --noconfirm ripgrep || true
 	pacman -S --noconfirm cmake
-	pacman -S --noconfirm make
 	pacman -S --noconfirm git
 	pacman -S --noconfirm curl
 	pacman -S --noconfirm unzip
@@ -110,10 +109,11 @@ install_yum() {
 	yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
 	yum install -y ripgrep || true
 	yum install -y cmake
-	yum install -y make
 	yum install -y git
 	yum install -y curl
+    yum install -y unzip
 }
+
 
 install_brew() {
 	brew install ripgrep || true

@@ -66,6 +66,7 @@ vim.g.python3_host_prog = vim.fn.exepath("python3")
 -- vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 vim.g.autoformat = false
 vim.opt.pumblend = 0
+vim.opt.termguicolors = true
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 vim.opt.scrolloff = 999
 vim.g.loaded_perl_provider = 0

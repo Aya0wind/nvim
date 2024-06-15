@@ -6,7 +6,6 @@ return {
 			require("auto-session").setup({
 				log_level = "error",
 				auto_session_enable_last_session = false,
-				-- 保存session文件到 ~/.local/share/nvim/sessions目录
 				auto_session_enabled = true,
 				auto_restore_enabled = true,
 				post_cwd_changed_hook = function() -- example refreshing the lualine status line _after_ the cwd changes

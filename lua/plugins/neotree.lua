@@ -8,6 +8,9 @@ return {
 			"MunifTanjim/nui.nvim",
 			"s1n7ax/nvim-window-picker",
 		},
+		opts = {
+			open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy" },
+		},
 		config = function()
 			require("window-picker").setup({
 				filter_rules = {
@@ -21,9 +24,11 @@ return {
 							"neo-tree-popup",
 							"notify",
 							"noice",
+                            "edgy",
+                            "Outline"
 						},
 						-- if the buffer type is one of following, the window will be ignored
-						buftype = { "terminal", "quickfix" },
+						buftype = { "terminal", "quickfix","edgy","neo-tree","neo-tree-git"},
 					},
 				},
 				selection_chars = "ABCDEFGHI",

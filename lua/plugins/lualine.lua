@@ -17,6 +17,35 @@ local config = {
 		lualine_y = {},
 		lualine_z = {},
 	},
+	-- tabline = {
+	-- 	lualine_a = {
+	-- 		{
+	-- 			"buffers",
+	-- 			separator = { left = "", right = "" },
+	-- 			filetype_names = {
+	-- 				TelescopePrompt = "Telescope",
+	-- 				dashboard = "Dashboard",
+	-- 				packer = "Packer",
+	-- 				alpha = "Alpha",
+	-- 			},
+	--
+	-- 			right_padding = 2,
+	-- 			symbols = {
+	-- 				modified = " ●", -- Text to show when the buffer is modified
+	-- 				alternate_file = "", -- Text to show to identify the alternate file
+	-- 				directory = "", -- Text to show when the buffer is a directory
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	lualine_z = {
+	-- 		{
+	-- 			"datetime",
+	-- 			-- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
+	-- 			style = "default",
+	-- 			separator = { left = "", right = "" },
+	-- 		},
+	-- 	},
+	-- },
 }
 
 local colors = {
@@ -276,6 +305,15 @@ local xmake_component = {
 
 local diagnostics = {
 	"diagnostics",
+	padding = 1,
+	sections = { "error", "warn", "info", "hint" },
+	diagnostics_color = {
+		-- Same values as the general color option can be used here.
+		error = "DiagnosticError", -- Changes diagnostics' error color.
+		warn = "DiagnosticWarn", -- Changes diagnostics' warn color.
+		info = "DiagnosticInfo", -- Changes diagnostics' info color.
+		hint = "DiagnosticHint", -- Changes diagnostics' hint color.
+	},
 	cond = function()
 		return vim.fn.winwidth(0) > 80
 	end,
@@ -286,8 +324,8 @@ diagnostics.symbols = {
 	info = icons.diagnostics.Information,
 	hint = icons.diagnostics.Question,
 }
-ins_left(diagnostics)
-ins_right(require('auto-session.lib').current_session_name)
+ins_right(diagnostics)
+ins_right(require("auto-session.lib").current_session_name)
 ins_right({
 	-- filesize component
 	"filesize",
@@ -308,7 +346,11 @@ ins_right({
 	color = { fg = colors.yellow, gui = "bold" },
 })
 if pcall(require, "copilot") then
-	ins_right("copilot")
+	ins_right({"copilot",
+    on_click = function ()
+        vim.cmd("Copilot toggle")
+    end
+    })
 end
 ins_right({
 	"filetype",
@@ -328,8 +370,9 @@ ins_right({
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "folke/noice.nvim", "AndreM222/copilot-lualine","rmagatti/auto-session" },
-		event = "UIEnter",
+		dependencies = { "folke/noice.nvim", "AndreM222/copilot-lualine", "rmagatti/auto-session" },
+		-- enabled = false,
+        event = "UIEnter",
 		config = function()
 			require("lualine").setup(config)
 		end,
