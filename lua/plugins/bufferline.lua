@@ -1,12 +1,15 @@
 return {
 	"akinsho/bufferline.nvim",
-	-- enabled = false,
 	config = function()
 		require("bufferline").setup({
-			-- highlights = require("catppuccin.groups.integrations.bufferline").get(),
+			highlights = require("catppuccin.groups.integrations.bufferline").get(),
 			options = {
-				custom_highlights = {
-					BufferLineBufferSelected = { style = { "bold" } },
+				custom_areas = {
+					right = function()
+						return vim.tbl_map(function(item)
+							return { text = item }
+						end, require("edgy-group.stl").get_statusline("right"))
+					end,
 				},
 				close_command = "bp|sp|bn|bd! %d",
 				right_mouse_command = "bp|sp|bn|bd! %d",

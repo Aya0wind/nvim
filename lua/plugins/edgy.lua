@@ -1,10 +1,11 @@
 return {
 	{
 		"folke/edgy.nvim",
-		-- event = "VeryLazy",
+		event = "VeryLazy",
 		opts = {
 			wo = {
 				winhighlight = "",
+				winbar = true,
 			},
 
 			bottom = {
@@ -48,11 +49,14 @@ return {
 					pinned = true,
 					open = "Neotree position=right git_status",
 				},
+			},
+			right = {
 				{
 					title = "Symbols",
 					ft = "Outline",
 					pinned = true,
 					open = "Outline",
+                    size = { width = 40 },
 				},
 			},
 			animate = {
@@ -81,9 +85,8 @@ return {
 		event = "VeryLazy",
 		opts = {
 			groups = {
-				left = {
-					{ icon = "", titles = { "Neo-Tree"} },
-					{ icon = "", titles = { "Neo-Tree Git" } },
+				right = {
+					{ icon = "   ", titles = { "Symbols" } },
 				},
 			},
 			statusline = {

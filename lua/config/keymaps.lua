@@ -1,5 +1,4 @@
 local vim = vim
-local utils = require("config.utils")
 local map = vim.keymap.set
 
 -- default maps
@@ -119,7 +118,6 @@ local Base = {
 		-- { { 'n', 'v' }, ']',         '*',            { nowait = true, desc = 'search forward for the word where the cursor is located' } },
 		-- { { 'n', 'v' }, '[',         '#',            { nowait = true, desc = 'search backward for the word where the cursor is located' } },
 		-- { 'n',          '<leader>q', 'q1',           { desc = 'record macro to register 1' } },
-		{ "n", "<C-q>", utils.quit_win, { desc = "quit window" } },
 
 		{
 			"n",
@@ -129,7 +127,6 @@ local Base = {
 			end,
 			{ desc = "format code" },
 		},
-		-- { 'n',          'Q',         utils.wq_all,   { desc = 'quit all' } },
 	},
 	fold = {
 		-- { 'n', '<CR>',          'za', { desc = 'toggle fold' } },
@@ -141,134 +138,124 @@ local Base = {
 }
 
 local Plugin = {
-	bufdelete = {
-		-- {
-		-- 	"n",
-		-- 	"<C-q>",
-		-- 	function()
-		-- 		utils.delete_buf_or_quit()
-		-- 	end,
-		-- 	{ desc = "delete buffer or quit" },
-		-- },
-	},
-	fzf = {
+	search = {
 		{
 			"n",
 			"sw",
-            "<cmd>Telescope live_grep theme=ivy<cr>",
+			"<cmd>Telescope live_grep theme=ivy<cr>",
 			{ desc = "search word in workspace" },
 		},
 		{
 			"n",
 			"sk",
-            "<cmd>Telescope keymaps theme=ivy<cr>",
+			"<cmd>Telescope keymaps theme=ivy<cr>",
 			{ desc = "search key in workspace" },
 		},
 		{
 			"n",
 			"sg",
-            "<cmd>Telescope git_commits theme=ivy<cr>",
+			"<cmd>Telescope git_commits theme=ivy<cr>",
 			{ desc = "search commits in workspace" },
 		},
 		{
 			"n",
 			"csg",
-            "<cmd>Telescope git_bcommits theme=ivy<cr>",
+			"<cmd>Telescope git_bcommits theme=ivy<cr>",
 			{ desc = "search commits in current buffer" },
 		},
 		{
 			"n",
 			"ss",
-            "<cmd>Telescope lsp_workspace_symbols theme=ivy<cr>",
+			"<cmd>Telescope lsp_workspace_symbols theme=ivy<cr>",
 			{ desc = "search workspace symbols" },
 		},
 		{
 			"n",
 			"css",
-            "<cmd>Telescope aerial theme=ivy<cr>",
+			"<cmd>Telescope aerial theme=ivy<cr>",
 			{ desc = "search current symbols" },
 		},
 		{
 			"n",
 			"sS",
-            "<cmd>Telescope session-lens search_session theme=ivy<cr>",
+			"<cmd>Telescope session-lens search_session theme=ivy<cr>",
 			{ desc = "search sessions" },
 		},
 		{
 			"n",
 			"css",
-            "<cmd>Telescope lsp_document_symbols theme=ivy<cr>",
+			"<cmd>Telescope lsp_document_symbols theme=ivy<cr>",
 			{ desc = "search document symbols" },
 		},
 
 		{
 			"n",
 			"csw",
-            "<cmd>Telescope current_buffer_fuzzy_find theme=ivy<cr>",
+			"<cmd>Telescope current_buffer_fuzzy_find theme=ivy<cr>",
 			{ desc = "search word in current buffer" },
 		},
-		
+
 		{
 			"n",
 			"sf",
-            "<cmd>Telescope find_files theme=ivy<cr>",
+			"<cmd>Telescope find_files theme=ivy<cr>",
 			{ desc = "search file" },
 		},
 		{
 			"n",
-            "sq",
-            "<cmd>Telescope quickfix theme=ivy<cr>",
+			"sq",
+			"<cmd>Telescope quickfix theme=ivy<cr>",
 			{ desc = "search quickfix" },
 		},
 		{
 			"n",
 			"sd",
-            "<cmd>Telescope diagnostics theme=ivy<cr>",
+			"<cmd>Telescope diagnostics theme=ivy<cr>",
 			{ desc = "search diagnostics" },
 		},
 		{
 			"n",
 			"csd",
-            "<cmd>Telescope diagnostics bufnr=0 theme=ivy<cr>",
+			"<cmd>Telescope diagnostics bufnr=0 theme=ivy<cr>",
 			{ desc = "search diagnostics in document" },
 		},
 
 		{
 			"n",
 			"sc",
-            "<cmd>Telescope commands theme=ivy<cr>",
+			"<cmd>Telescope commands theme=ivy<cr>",
 			{ desc = "search command" },
 		},
 		{
 			"n",
 			"sb",
-            "<cmd>Telescope buffers theme=ivy<cr>",
+			"<cmd>Telescope buffers theme=ivy<cr>",
 			{ desc = "search buffers" },
 		},
 		{
 			"n",
 			"std",
-            "<cmd>Telescope lsp_definitions theme=ivy<cr>",
+			"<cmd>Telescope lsp_definitions theme=ivy<cr>",
 			{ desc = "search definition" },
 		},
 		{
 			"n",
 			"st",
-            "<cmd>telescope colorscheme theme=ivy<cr>",
+			"<cmd>telescope colorscheme theme=ivy<cr>",
 			{ desc = "search colorschemes" },
 		},
-        {
-            "n",
-            "sj",
-            "<cmd>Telescope jumplist theme=ivy<cr>",
-            { desc = "search jumplist" },
-        },
-        {
-            "n",
-            "sr",
-            "<cmd>Telescope lsp_references theme=ivy<cr>",
-            { desc = "search search references" },
-        },
+		{
+			"n",
+			"sj",
+			"<cmd>Telescope jumplist theme=ivy<cr>",
+			{ desc = "search jumplist" },
+		},
+		{
+			"n",
+			"sr",
+			"<cmd>Telescope lsp_references theme=ivy<cr>",
+			{ desc = "search references" },
+		},
 	},
 	edit = {
 		{

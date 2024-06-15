@@ -25,10 +25,11 @@ return {
 							"notify",
 							"noice",
                             "edgy",
-                            "Outline"
+                            "Outline",
+                            "CopilotChat",
 						},
 						-- if the buffer type is one of following, the window will be ignored
-						buftype = { "terminal", "quickfix","edgy","neo-tree","neo-tree-git"},
+						buftype = { "terminal"},
 					},
 				},
 				selection_chars = "ABCDEFGHI",
